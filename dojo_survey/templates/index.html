@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    
     {% if session['tracker'] == 0 %}
         <div class="container bg-dark p-4 w-25" >
             <h1 class="text-warning">Dojo Survey</h1>
@@ -22,18 +23,18 @@
                 <label for="location" class="form-label">Dojo Location:</label>
                 <select class="form-select" name="location" aria-label="Default select example">
                     <option selected>--Select A Location--</option>
-                    <option value="1">Los Angeles</option>
-                    <option value="2">Italy</option>
-                    <option value="3">Bermuda Triangle</option>
-                    <option value="4">Mount Everest</option>
+                    <option>Los Angeles</option>
+                    <option>Italy</option>
+                    <option>Bermuda Triangle</option>
+                    <option>Mount Everest</option>
                 </select>
                 <label for="language" class="form-label">Favorite Language:</label>
                 <select class="form-select" name="language" aria-label="Default select example">
                     <option selected>--Select A Language--</option>
-                    <option value="1">Python</option>
-                    <option value="2">C++</option>
-                    <option value="3">Javascript</option>
-                    <option value="4">Atlantian</option>
+                    <option>Python</option>
+                    <option>C++</option>
+                    <option>Javascript</option>
+                    <option>Atlantian</option>
                 </select>
                 <div class="mb-3">
                     <label for="comment" class="form-label">Comment:</label>
@@ -42,6 +43,19 @@
                 <button class="btn btn-warning" type="submit">Submit</button>
             </form>
         </div>
+
+        {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+            {% if messages %}   
+                <div class="container bg-danger w-25 d-block text-light text-center mt-4" style="height: 120px;">
+                {% for message in messages %}            <!-- loop through the messages -->
+                    <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                {% endfor %}
+                </div>                         <!-- check if there are any messages -->
+            {% endif %}
+        {% endwith %}
+
+
+
     {% elif session['tracker'] == 1 %}
         <div class="container bg-dark p-4 w-25 text-light">
             <h2 class="text-danger">{{session['name']}}</h2>
